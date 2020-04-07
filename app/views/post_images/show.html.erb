@@ -27,12 +27,16 @@
 		<div class="nice">
 		</div>
 		<div class="comment">
-			<%= @post.comment.count %> コメント
+			<%= @post.comments.count %> コメント
 		</div>
 	</div>
 	<div class="caption">
 		<%= @post.caption %>
 	</div>
+
+	<% if @post.user == current_user %>
+		<%= link_to "編集", edit_post_image_path(@post.id) %>
+		<%= link_to "削除", post_image_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
 </div>
 
 <div class="comments">

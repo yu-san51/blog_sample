@@ -7,14 +7,14 @@
 	<div class="blog">
 		<%= @posts.each do |post| %>
 			<h3 class="blog-title">
-				<%= post.title %>
+				<%= link_to "#{post.title}", post_image_path(post.id) %>
 			</h3>
 			<div class="img-box">
-				<%= post.post_image %>
+				<%= attachment_image_tag post.post_image, :image %>
 			</div>
 			<div class="user-info">
 				<div class="userphoto">
-					<%= post.user.user_image %>
+					<%= attachment_image_tag post.user.user_image, :user_image %>
 				</div>
 				<div class="username">
 					<%= post.user.name %>
