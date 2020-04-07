@@ -6,4 +6,7 @@ class User < ApplicationRecord
 
   has_many :post_images, dependent: :destroy
   attachment :user_image
+  validates :name, presence: true
+  validates :introduction, length: { in: 1..300 }
+
 end

@@ -1,5 +1,7 @@
 <div class="user-edit">
 	<%= form_for(@user) do |f| %>
+	<%= render 'layouts/error_messages', model: f.object %>
+
 		<%= f.label :name %>
 		<%= f.text_field :name %>
 

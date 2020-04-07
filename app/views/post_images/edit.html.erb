@@ -1,5 +1,8 @@
 <div class="edit-page">
 	<%= form_for(@post) do |f| %>
+
+	<%= render 'layouts/error_messages', model: f.object %>
+
 		<%= f.label :title %>
 		<%= f.text_field :title %>
 

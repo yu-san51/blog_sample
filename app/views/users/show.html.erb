@@ -43,7 +43,7 @@
 				<%= link_to "続きはこちら", post_image_path(post.id) %>
 			</div>
 		<% end %>
-
+		<%= paginate @posts, class: "paginate" %>
 	</div>
 </div>
 <div>
