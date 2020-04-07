@@ -1,0 +1,48 @@
+<div class="user-page">
+	<div class="user-profile">
+		<div class="user-img">
+			<%= attachment_image_tag @user, :user_image %>
+		</div>
+		<div class="introduction">
+			<%= @user.name %>
+			<%= @user.introduction %>
+		</div>
+	</div>
+
+	<div class="user-blog">
+		<%= @posts.each do |post| %>
+			<h3 class="blog-title">
+				<%= link_to "#{post.title}", post_image_path(post.id) %>
+			</h3>
+			<div class="img-box">
+				<%= attachment_image_tag post.post_image, :image %>
+			</div>
+			<div class="user-info">
+				<div class="userphoto">
+					<%= attachment_image_tag post.user.user_image, :user_image %>
+				</div>
+				<div class="username">
+					<%= post.user.name %>
+				</div>
+			</div>
+			<div class="post-info">
+				<div class="date">
+					<%= post.create_at %>
+				</div>
+				<div class="category">
+					<%= post.category %>
+				</div>
+				<div class="nice">
+				</div>
+				<div class="comment">
+					<%= post.comment.count %> コメント
+				</div>
+			</div>
+			<div class="caption">
+				<%= post.caption.truncate(50) %>
+				<%= link_to "続きはこちら", post_image_path(post.id) %>
+			</div>
+		<% end %>
+
+	</div>
+</div>
