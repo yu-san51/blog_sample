@@ -1,0 +1,44 @@
+<div class="blog">
+	<h3 class="blog-title">
+		<%= @post.title %>
+	</h3>
+	<div class="img-box">
+		<%= @post.post_image %>
+	</div>
+	<div class="user-info">
+		<div class="userphoto">
+			<%= @post.user.image %>
+		</div>
+		<div class="username">
+			<%= @post.user.name %>
+		</div>
+	</div>
+	<div class="post-info">
+		<div class="date">
+			<%= @post.create_at %>
+		</div>
+		<div class="category">
+			<%= @post.category %>
+		</div>
+		<div class="nice">
+		</div>
+		<div class="comment">
+			<%= @post.comment.count %> コメント
+		</div>
+	</div>
+	<div class="caption">
+		<%= @post.caption %>
+	</div>
+</div>
+
+<div class="comments">
+	<%= @comments.each do |comment| %>
+		<div class="user-info">
+			<li><%= comment.user.image %></li>
+			<li><%= comment.user.name %></li>
+			<li><%= comment.created_at %></li>
+		</div>
+		<div class="comment-caption">
+			<%= comment.text %>
+		</div>
+</div>

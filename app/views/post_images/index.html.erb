@@ -4,7 +4,7 @@
 
 <section>
 	<h2>Blogs</h2>
-	<div class="blog">]
+	<div class="blog">
 		<%= @posts.each do |post| %>
 			<h3 class="blog-title">
 				<%= post.title %>
@@ -12,25 +12,30 @@
 			<div class="img-box">
 				<%= post.post_image %>
 			</div>
-			<div class="userphoto">
-				<%= post.user.image %>
+			<div class="user-info">
+				<div class="userphoto">
+					<%= post.user.user_image %>
+				</div>
+				<div class="username">
+					<%= post.user.name %>
+				</div>
 			</div>
-			<div class="username">
-				<%= post.user.name %>
-			</div>
-			<div class="date">
-				<%= post.create_at %>
-			</div>
-			<div class="category">
-				<%= post.category %>
-			</div>
-			<div class="nice">
-			</div>
-			<div class="comment">
-				<%= post.comment.count %> コメント
+			<div class="post-info">
+				<div class="date">
+					<%= post.create_at %>
+				</div>
+				<div class="category">
+					<%= post.category %>
+				</div>
+				<div class="nice">
+				</div>
+				<div class="comment">
+					<%= post.comment.count %> コメント
+				</div>
 			</div>
 			<div class="caption">
-				<%= post.caption %>
+				<%= post.caption.truncate(50) %>
+				<%= link_to "続きはこちら", post_image_path(post.id) %>
 			</div>
 		<% end %>
 	</div>
