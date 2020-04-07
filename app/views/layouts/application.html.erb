@@ -18,9 +18,9 @@
 
           <ul class="nav-list">
             <li class="nav-item">ようこそ・・・さん</li>
-            <li class="nav-item">My page</li>
+            <li class="nav-item"><%= link_to "My page", user_path(current_user.id) %></li>
             <li class="nav-item">探す</li>
-            <li class="nav-item">投稿</li>
+            <li class="nav-item"><%= link_to "投稿", new_post_image_path %></li>
           </ul>
         </nav>
       <% else %>

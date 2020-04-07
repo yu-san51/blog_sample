@@ -7,11 +7,11 @@
 		<%= @post.title %>
 	</h3>
 	<div class="img-box">
-		<%= @post.post_image %>
+		<%= attachment_image_tag @post, :image, fallback:"no_image.jpg" %>
 	</div>
 	<div class="user-info">
 		<div class="userphoto">
-			<%= @post.user.image %>
+			<%= attachment_image_tag @post, :image, fallback:"no_image.jpg"  %>
 		</div>
 		<div class="username">
 			<%= @post.user.name %>
@@ -19,15 +19,13 @@
 	</div>
 	<div class="post-info">
 		<div class="date">
-			<%= @post.create_at %>
+			<%= @post.created_at %>
 		</div>
 		<div class="category">
-			<%= @post.category %>
 		</div>
 		<div class="nice">
 		</div>
 		<div class="comment">
-			<%= @post.comments.count %> コメント
 		</div>
 	</div>
 	<div class="caption">
@@ -37,16 +35,8 @@
 	<% if @post.user == current_user %>
 		<%= link_to "編集", edit_post_image_path(@post.id) %>
 		<%= link_to "削除", post_image_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+	<% end %>
 </div>
 
 <div class="comments">
-	<%= @comments.each do |comment| %>
-		<div class="user-info">
-			<li><%= comment.user.image %></li>
-			<li><%= comment.user.name %></li>
-			<li><%= comment.created_at %></li>
-		</div>
-		<div class="comment-caption">
-			<%= comment.text %>
-		</div>
 </div>

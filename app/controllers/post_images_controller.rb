@@ -1,6 +1,6 @@
 class PostImagesController < ApplicationController
 	def index
-		@posts = PostImaege.all
+		@posts = PostImage.all
 	end
 
 	def show
@@ -13,7 +13,7 @@ class PostImagesController < ApplicationController
 
 	def create
 		@post = PostImage.new(post_params)
-		@post.user.id = currenet_user.id
+		@post.user_id = current_user.id
 		if @post.save
 			redirect_to post_images_path
 		else
@@ -28,7 +28,7 @@ class PostImagesController < ApplicationController
 	def update
 		@post = PostImage.find(params[:id])
 		if @post.update(post_params)
-			redirect_to post\path(@post.id)
+			redirect_to post_image_path(@post.id)
 		else
 			render :edit
 		end
@@ -42,7 +42,6 @@ class PostImagesController < ApplicationController
 
 	private
 	def post_params
-		params.require(:PostImage).permit(:title, :image, :
-			caption)
+		params.require(:post_image).permit(:title, :image, :caption)
 	end
 end

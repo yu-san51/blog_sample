@@ -5,16 +5,16 @@
 <section>
 	<h2>Blogs</h2>
 	<div class="blog">
-		<%= @posts.each do |post| %>
+		<% @posts.each do |post| %>
 			<h3 class="blog-title">
 				<%= link_to "#{post.title}", post_image_path(post.id) %>
 			</h3>
 			<div class="img-box">
-				<%= attachment_image_tag post.post_image, :image %>
+				<%= attachment_image_tag post, :image, fallback: "no_image.jpg" %>
 			</div>
 			<div class="user-info">
 				<div class="userphoto">
-					<%= attachment_image_tag post.user.user_image, :user_image %>
+					<%= attachment_image_tag post, :image, fallback: "no_image.jpg" %>
 				</div>
 				<div class="username">
 					<%= post.user.name %>
@@ -22,15 +22,11 @@
 			</div>
 			<div class="post-info">
 				<div class="date">
-					<%= post.create_at %>
-				</div>
-				<div class="category">
-					<%= post.category %>
+					<%= post.created_at %>
 				</div>
 				<div class="nice">
 				</div>
 				<div class="comment">
-					<%= post.comment.count %> コメント
 				</div>
 			</div>
 			<div class="caption">

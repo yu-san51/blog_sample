@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :post_image
-  resources :user, only: [:show, :edit, :update]
+  resources :post_images
+  resources :users, only: [:show, :edit, :update]
 
   root "home#index"
   get "home/about" => "home#about"

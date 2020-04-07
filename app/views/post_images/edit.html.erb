@@ -1,21 +1,14 @@
 <div class="edit-page">
 	<%= form_for(@post) do |f| %>
 		<%= f.label :title %>
-		<%= f.form.text_field :title %>
+		<%= f.text_field :title %>
 
 		<%= f.label :image_id %>
-		<%= f.attachment_field :image_id %>
+		<%= f.attachment_field :image %>
 
 		<%= f.label :caption %>
 		<%= f.text_area :caption %>
 
-		<%= f.label :category %>
- 			<%= f.collection_check_boxes(:category_ids, Category.all, :id, :type) do |category| %>
-      			<%= category.label do %>
-       				 <%= category.check_box %>
-       				 <%= category.text %>
-     			 <% end %>
-    		<% end %>
 
 		<%= f.submit %>
 
