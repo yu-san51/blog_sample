@@ -25,8 +25,6 @@
 		</div>
 		<div class="nice">
 		</div>
-		<div class="comment">
-		</div>
 	</div>
 	<div class="caption">
 		<%= @post.caption %>
@@ -38,5 +36,24 @@
 	<% end %>
 </div>
 
-<div class="comments">
+<div class="comment">
+	<% @post_image.post_comments.each do |post_comment| %>
+		<div class="user-info">
+			<%= attachment_image_tag user, :user_image %>
+			<%= link_to "#{post_comment.user.name}", user_path(post_comment.user.id) %>
+		</div>
+		<div class="comment-text">
+			<%= post_comment.created_at.strftime("%Y/%m/%d") %>
+			<%= post_comment.comment %>
+		</div>
+	<% end %>
+</div>
+
+<div class="sidebar postcomment">
+	<%= form_for [@post_image, @post_comment] do |f| %>
+	<%= render 'layouts/error_messages', model: f.object %>
+
+		<%= f.text_area :comment, rows:"5", placeholder:"コメント記入" %>
+		<%= f.submit "投稿" %>
+	<% end %>
 </div>

@@ -35,7 +35,7 @@
 				<div class="nice">
 				</div>
 				<div class="comment">
-					<%= post.comment.count %> コメント
+					<%= link_to "#{@post.post_comments.count} コメント", post_image_path(post.id) %>
 				</div>
 			</div>
 			<div class="caption">

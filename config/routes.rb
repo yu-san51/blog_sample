@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :post_images
+  resources :post_images do
+  	resource :post_comments, only: [:create]
+  	resource :favorites, only: [:create, :destroy]
+  end
   resources :users, only: [:show, :edit, :update]
 
   root "home#index"
