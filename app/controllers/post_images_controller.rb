@@ -5,6 +5,7 @@ class PostImagesController < ApplicationController
 
 	def show
 		@post = PostImage.find(params[:id])
+		@post_comments = @post.post_comments
 		@post_comment = PostComment.new
 	end
 

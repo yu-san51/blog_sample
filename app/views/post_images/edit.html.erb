@@ -1,23 +1,30 @@
-<div class="edit-page">
-	<%= form_for(@post) do |f| %>
+<div class="wrapper">
+	<div class="content">
+		<div class="edit-page">
+			<h3 class="inup-head">** 編集 **</h3>
+		<%= form_for(@post) do |f| %>
 
-	<%= render 'layouts/error_messages', model: f.object %>
+		<%= render 'layouts/error_messages', model: f.object %>
+			<div class="field">
+				<%= f.label :title %>
+				<%= f.text_field :title %>
+			</div>
+			<div class="field">
+				<%= f.label :image_id %>
+				<%= f.attachment_field :image %>
+			</div>
+			<div class="field">
+				<%= f.label :caption %><br>
+				<%= f.text_area :caption %>
+			</div>
+			<div class="field">
+				<%= f.submit class:"in-btn"%>
+			</div>
+		<% end %>
+		</div>
 
-		<%= f.label :title %>
-		<%= f.text_field :title %>
-
-		<%= f.label :image_id %>
-		<%= f.attachment_field :image %>
-
-		<%= f.label :caption %>
-		<%= f.text_area :caption %>
-
-
-		<%= f.submit %>
-
-	<% end %>
+	<%= link_to "back", post_image_path(@post.id) %>
+	<span> | </span>
+	<%= link_to "index", post_images_path %>
+	</div>
 </div>
-
-<%= link_to "back", post_image_path(@post.id) %>
-<span> | </span>
-<%= link_to "index", post_images_path %>

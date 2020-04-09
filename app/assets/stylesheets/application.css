@@ -26,15 +26,22 @@ header{
 	background-color: #505050;
 	opacity: 0.6;
 	justify-content: center;
+
 }
 nav{
 	width: 70%;
 	line-height: 60px;
 	display: flex;
+	text-decoration: none;
 }
 .nav-list{
 	display: flex;
 	justify-content: flex-end;
+}
+.welcom{
+	list-style: none;
+	font-size: 16px;
+	color: #fafafa;
 }
 .nav-item{
 	list-style: none;
@@ -64,3 +71,163 @@ footer{
 	font-size: 16px;
 }
 
+
+
+.wrapper{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+/*home*/
+.top-visual{
+	width: 100%;
+	height: 100vh;
+	color: #444444;
+	font-size: 50px;
+	text-align: center;
+	line-height: 400px;
+	background:linear-gradient(45deg,rgba(31,223,223,0.6),rgba(255,171,255,0.6)),fixed;
+}
+.inup-btn{
+	display: flex;
+	justify-content: center;
+}
+.inup{
+	width: 350px;
+	height: 100px;
+	line-height: 80px;
+	padding: 20px;
+	margin: 30px;
+	background-color: rgba(255,255,255,0.5);
+}
+.inup a:hover{
+	color: #bb1fdf;
+}
+
+/*login,signup,new,edit*/
+.content{
+	width: 30%;
+	margin: 30px 0;
+}
+.inup-head{
+	text-align: center;
+}
+.field{
+	margin-bottom: 5px;
+}
+
+.in-btn{
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+
+/*post-image-index*/
+.main-visual{
+	width: 100%;
+	height: 150px;
+	color: #444444;
+	font-size: 50px;
+	text-align: center;
+	line-height: 150px;
+	background:linear-gradient(45deg,rgba(31,223,223,0.6),rgba(255,171,255,0.6)),fixed;
+}
+.index-head{
+	text-align: center;
+	margin: 10px;
+	font-size: 30px;
+}
+.blog-box{
+	display: flex;
+}
+.blog-title{
+	font-size: 20px;
+}
+.user-info{
+	display: flex;
+}
+.post-info{
+	display: flex;
+}
+
+/*post-image-show*/
+
+.post-image-show-visual{
+	width: 100%;
+	height: 150px;
+	color: #444444;
+	font-size: 50px;
+	text-align: center;
+	line-height: 150px;
+	background:linear-gradient(45deg,rgba(31,223,223,0.6),rgba(255,171,255,0.6)),fixed;
+}
+.blog-show{
+	display: flex;
+	justify-content: space-around;
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
+.blog-main{
+	width: 70%;
+}
+.blog-show-title{
+	font-size: 30px;
+}
+
+.show-user-info{
+	display: flex;
+	justify-content: space-between;
+	width: 200px;
+}
+.show-userphoto{
+	border-radius: 50px;
+}
+.show-username{
+	width: 130px;
+	line-height: 50px;
+	font-weight: bold;
+}
+.show-post-info{
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 15px;
+}
+.show-caption{
+	width: 300px;
+	border:1px solid #a7a7a7;
+	font-size: 16px;
+	margin-bottom: 15px;
+}
+.show-edit-destroy{
+	width: 400px;
+}
+
+.btn{
+	width: 100%;
+	height: 20px;
+	margin-bottom: 5px;
+	background-color: #E000FF;
+	color: #fff;
+	border-radius: 5px;
+}
+
+.postcomment{
+	width: 20%;
+}
+
+/*user-show*/
+.user-box{
+	width: 80%;
+	display: flex;
+	justify-content: space-between;
+}
+.user-profile{
+	width: 20%;
+}
+.user-blog{
+	width: 70%;
+}
+.post-info{
+	display: flex;
+}

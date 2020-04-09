@@ -1,19 +1,28 @@
-<div class="user-edit">
-	<%= form_for(@user) do |f| %>
-	<%= render 'layouts/error_messages', model: f.object %>
+<div class="wrapper">
+	<div class="content">
 
-		<%= f.label :name %>
-		<%= f.text_field :name %>
+		<div class="user-edit">
+			<h3 class="inup-head">** User 編集 **</h3>
+			<%= form_for(@user) do |f| %>
+			<%= render 'layouts/error_messages', model: f.object %>
+				<div class="field">
+					<%= f.label :name %>
+					<%= f.text_field :name %>
+				</div>
+				<div class="field">
+					<%= f.label :user_image %>
+					<%= f.attachment_field :user_image %>
+				</div>
+				<div class="field">
+					<%= f.label :introduction %>
+					<%= f.text_area :introduction %>
+				</div>
+				<div class="field">
+					<%= f.submit class:"in-btn" %>
+				</div>
+			<% end %>
+		</div>
 
-		<%= f.label :user_image %>
-		<%= f.attachment_field :user_image %>
-
-		<%= f.label :introduction %>
-		<%= f.text_area :introduction %>
-
-		<%= f.submit %>
-
-	<% end %>
+		<%= link_to "back", user_path(@user.id) %>
+	</div>
 </div>
-
-<%= link_to "back", user_path(@user.id) %>

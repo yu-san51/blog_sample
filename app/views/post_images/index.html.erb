@@ -1,51 +1,55 @@
 <div class="main-visual">
-	
+	<p>post-index</p>
 </div>
 
-<section>
-	<h2>Blogs</h2>
-	<div class="blog">
-		<% @posts.each do |post| %>
-			<h3 class="blog-title">
-				<%= link_to "#{post.title}", post_image_path(post.id) %>
-			</h3>
-			<div class="img-box">
-				<%= attachment_image_tag post, :image, fallback: "no_image.jpg" %>
-			</div>
-			<div class="user-info">
-				<div class="userphoto">
-					<%= attachment_image_tag post, :image, fallback: "no_image.jpg" %>
+<div class="wrapper">
+	<section class="image-index-content">
+		<h2 class="index-head">Blogs</h2>
+		<div class="blog-box">
+			<% @posts.each do |post| %>
+			<div class="post-date">
+				<h3 class="blog-title">
+					<%= link_to "#{post.title}", post_image_path(post.id) %>
+				</h3>
+				<div class="img-box">
+					<%= attachment_image_tag post, :image, size:"300x200", fallback: "no_image.jpg" %>
 				</div>
-				<div class="username">
-					<%= post.user.name %>
+				<div class="user-info">
+					<div class="userphoto">
+						<%= attachment_image_tag post, :image, fallback: "no_image.jpg", size:"40x40" %>
+					</div>
+					<div class="username">
+						<%= post.user.name %>
+					</div>
 				</div>
-			</div>
-			<div class="post-info">
-				<div class="date">
-					<%= post.created_at %>
-				</div>
-				<div class="nice">
-					<% if post.favorited_by?(current_user) %>
-						<%= link_to post_omage_favorites_path(@post_image), method: :delete do %>
-							<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-							<%= @post_image.favorites.count %> いいね
+				<div class="post-info">
+					<div class="date">
+						<%= post.created_at.strftime("%Y/%m/%d") %>
+					</div>
+					<div class="nice">
+						<% if post.favorited_by?(current_user) %>
+							<%= link_to post_image_favorites_path(post), method: :delete do %>
+								<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+								<%= post.favorites.count %> いいね
+							<% end %>
+						<% else %>
+							<%= link_to post_image_favorites_path(post), method: :post do %>
+								 <i class="fa fa-heart-o" aria-hidden="true"></i>
+								 <%= post.favorites.count %> いいね
+							<% end %>
 						<% end %>
-					<% else %>
-						<%= link_to post_image_favorites_path(@post_image), method: :post do %>
-							 <i class="fa fa-heart-o" aria-hidden="true"></i>
-							 <%= @post_image.favorites.count %> いいね
-						<% end %>
-					<% end %>
-				</div>
-				<div class="comment">
-					<%= link_to "#{@post.post_comments.count} コメント", post_image_path(post.id) %>
-				</div>
-			</div>
+					</div><!--nice-->
+					<div class="comment">
+						<%= link_to "#{post.post_comments.count} コメント", post_image_path(post.id) %>
+					</div>
+				</div><!--postinfo-->
+			</div><!--post-date-->
 			<div class="caption">
 				<%= post.caption.truncate(50) %>
 				<%= link_to "続きはこちら", post_image_path(post.id) %>
 			</div>
-		<% end %>
-		<%= paginate @posts, class: "paginate" %>
-	</div>
-</section>
+			<% end %>
+			<%= paginate @posts, class: "paginate" %>
+		</div>
+	</section>
+</div><!--wrapper-->

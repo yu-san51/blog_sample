@@ -1,19 +1,27 @@
-<div class="create-page">
-	<%= form_for(@post) do |f| %>
-	<%= render 'layouts/error_messages', model: f.object %>
 
-		<%= f.label :title %>
-		<%= f.text_field :title %><br>
+<div class="wrapper">
+	<div class="content">
+		<h3 class="inup-head">** 投稿 **</h3>
+		<%= form_for(@post) do |f| %>
+		<%= render 'layouts/error_messages', model: f.object %>
 
-		<%= f.label :image_id %>
-		<%= f.attachment_field :image_id %><br>
+			<div class="field">
+				<%= f.label :title %>
+				<%= f.text_field :title %>
+			</div>
+			<div class="field">
+				<%= f.label :image_id %>
+				<%= f.attachment_field :image %>
+			</div>
+			<div class="field">
+				<%= f.label :caption %><br>
+				<%= f.text_area :caption %>
+			</div>
+			<div class="field">
+			<%= f.submit class:"in-btn" %>
+			</div>
+		<% end %>
 
-		<%= f.label :caption %>
-		<%= f.text_area :caption %><br>
-
-		<%= f.submit %>
-
-	<% end %>
+		<%= link_to "back", post_images_path %>
+	</div>
 </div>
-
-<%= link_to "back", post_images_path %>

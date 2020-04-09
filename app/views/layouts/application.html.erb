@@ -16,13 +16,14 @@
       <% if user_signed_in? %>
       <!-- ログインあと -->
         <nav>
-          <div class="nav-logo">logo</div>
+          <div class="nav-logo"><%= link_to "logo", post_images_path %></div>
 
           <ul class="nav-list">
-            <li class="nav-item">ようこそ <%= current_user.name %> さん</li>
+            <li class="welcom">ようこそ <%= current_user.name %> さん</li>
             <li class="nav-item"><%= link_to "My page", user_path(current_user.id) %></li>
             <li class="nav-item">探す</li>
             <li class="nav-item"><%= link_to "投稿", new_post_image_path %></li>
+            <li class="nav-item"><%= link_to "Log-out", destroy_user_session_path, method: :delete %></li>
           </ul>
         </nav>
       <% else %>
@@ -39,7 +40,6 @@
         </nav>
       <% end %>
     </header><!-- /header -->
-
 
 
     <%= yield %>

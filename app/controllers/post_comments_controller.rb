@@ -1,15 +1,15 @@
 class PostCommentsController < ApplicationController
 
 	def create
-		post_image = PostImage.find(params[:post_image_id])
-		comment = current_user.post_comments.new(post_comment_params)
-		comment.post_image_id = post_image.post_image.id
-		comment.save
+		@post = PostImage.find(params[:post_image_id])
+		@post_comment = current_user.post_comments.new(post_comment_params)
+		@post_comment.post_image_id = @post.id
+		@post_comment.save
 		redirect_to post_image_path(post_image.id)
 	end
 
 	private
 	def post_comment_params
-		pramas.require(:post_comment).permit(:comment)
+		params.require(:post_comment).permit(:comment)
 	end
 end

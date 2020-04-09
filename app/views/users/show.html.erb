@@ -1,29 +1,28 @@
-<div class="user-page">
-	<div class="user-profile">
-		<div class="user-img">
-			<%= attachment_image_tag @user, :user_image %>
-		</div>
-		<div class="introduction">
-			<%= @user.name %>
-			<%= @user.introduction %>
-		</div>
-	</div>
+<div class="main-visual">
+	<p>user-show</p>
+</div>
 
-	<div class="user-blog">
+<div class="wrapper">
+	<div class="user-box">
+		<div class="user-profile">
+			<div class="user-img">
+				<%= attachment_image_tag @user, :user_image, fallback:"no_image.jpg", size:"100x100" %>
+			</div>
+			<div class="introduction">
+			<%= @user.name %><br>
+			<%= @user.introduction %>
+			</div>
+			<%= link_to "あたらしい投稿", new_post_image_path %>
+		</div>
+
+
+		<div class="user-blog">
 		<%= @posts.each do |post| %>
 			<h3 class="blog-title">
 				<%= link_to "#{post.title}", post_image_path(post.id) %>
 			</h3>
 			<div class="img-box">
-				<%= attachment_image_tag post.post_image, :image %>
-			</div>
-			<div class="user-info">
-				<div class="userphoto">
-					<%= attachment_image_tag post.user.user_image, :user_image %>
-				</div>
-				<div class="username">
-					<%= post.user.name %>
-				</div>
+				<%= attachment_image_tag post.post_image, :image, fallback:"no_image.jpg" %>
 			</div>
 			<div class="post-info">
 				<div class="date">
@@ -39,11 +38,11 @@
 				</div>
 			</div>
 			<div class="caption">
+				<%= post.caption.truncate(50) %>
+				<%= link_to "続きはこちら", post_image_path(post.id) %>
 			</div>
 		<% end %>
 		<%= paginate @posts, class: "paginate" %>
+		</div>
 	</div>
-</div>
 <div>
-	<%= link_to "投稿", new_post_image_path %>
-</div>

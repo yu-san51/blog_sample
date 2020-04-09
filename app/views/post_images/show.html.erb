@@ -1,59 +1,69 @@
-<div class="visual">
-	
+<div class="post-image-show-visual">
+	<p>画像　詳細</p>
 </div>
 
-<div class="blog">
-	<h3 class="blog-title">
-		<%= @post.title %>
-	</h3>
-	<div class="img-box">
-		<%= attachment_image_tag @post, :image, fallback:"no_image.jpg" %>
-	</div>
-	<div class="user-info">
-		<div class="userphoto">
-			<%= attachment_image_tag @post, :image, fallback:"no_image.jpg"  %>
-		</div>
-		<div class="username">
-			<%= @post.user.name %>
-		</div>
-	</div>
-	<div class="post-info">
-		<div class="date">
-			<%= @post.created_at.strftime("%Y/%m/%d") %>
-		</div>
-		<div class="category">
-		</div>
-		<div class="nice">
-		</div>
-	</div>
-	<div class="caption">
-		<%= @post.caption %>
-	</div>
+<div class="wrapper">
+	<div class="blog-show">
+		<div class="blog-main">
+			<h3 class="blog-show-title">
+				<%= @post.title %>
+			</h3>
+			<div class="show-img-box">
+				<%= attachment_image_tag @post, :image, size:"400x350",
+				fallback:"no_image.jpg" %>
+			</div>
+			<div class="show-user-info">
+				<div class="show-userphoto">
+					<%= attachment_image_tag @post, :image, fallback:"no_image.jpg", size:"50x50" %>
+				</div>
+				<div class="show-username">
+					<%= @post.user.name %>
+				</div>
+			</div>
+			<div class="show-post-info">
+				<div class="date">
+					<%= @post.created_at.strftime("%Y/%m/%d") %>
+				</div>
+				<div class="category">
+				</div>
+				<div class="nice">
+					<%= @post.favorites.count %> いいね
+				</div>
+			</div>
+			<div class="show-caption">
+				<%= @post.caption %>
+			</div>
+			<div class="show-edit-destroy">
+				<% if @post.user == current_user %>
+					<%= link_to "編集", edit_post_image_path(@post.id), class:"btn" %>
+					<%= link_to "削除", post_image_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn" %>
+				<% end %>
+			</div>
 
-	<% if @post.user == current_user %>
-		<%= link_to "編集", edit_post_image_path(@post.id) %>
-		<%= link_to "削除", post_image_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-	<% end %>
-</div>
+			<div class="comment">
+				<% @post.post_comments.each do |post_comment| %>
+						<div class="user-info">
+				<div class="comment-user">
+					<%= attachment_image_tag post_comment.user, :user_image %>
+					<%= link_to "#{post_comment.user.name}", user_path(post_comment.user.id) %>
+				</div>
+				<div class="comment-text">
+					<%= post_comment.created_at.strftime("%Y/%m/%d") %>
+					<%= post_comment.comment %>
+				</div>
+				<% end %>
+			</div><!--comment-->
+		</div><!--blogmain-->
 
-<div class="comment">
-	<% @post_image.post_comments.each do |post_comment| %>
-		<div class="user-info">
-			<%= attachment_image_tag user, :user_image %>
-			<%= link_to "#{post_comment.user.name}", user_path(post_comment.user.id) %>
-		</div>
-		<div class="comment-text">
-			<%= post_comment.created_at.strftime("%Y/%m/%d") %>
-			<%= post_comment.comment %>
-		</div>
-	<% end %>
-</div>
+		<div class="sidebar postcomment">
+			<p>コメントしてね！！</p>
 
-<div class="sidebar postcomment">
-	<%= form_for [@post_image, @post_comment] do |f| %>
-	<%= render 'layouts/error_messages', model: f.object %>
+			<%= form_for [@post, @post_comment] do |f| %>
+			<%= render 'layouts/error_messages', model: f.object %>
 
-		<%= f.text_area :comment, rows:"5", placeholder:"コメント記入" %>
-		<%= f.submit "投稿" %>
-	<% end %>
+				<%= f.text_area :comment, rows:"5", placeholder:"コメント記入" %>
+				<%= f.submit "投稿" %>
+			<% end %>
+		</div><!--postcomment-->
+	</div><!--blog-show-->
 </div>
