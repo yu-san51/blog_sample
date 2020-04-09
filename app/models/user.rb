@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   
-  attachment :user_image
+  attachment :user_image_id
   validates :name, presence: true
   validates :introduction, length: { in: 1..300 }
 

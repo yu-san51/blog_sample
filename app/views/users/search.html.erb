@@ -1,0 +1,31 @@
+<div class="wrapper">
+	<div class="content">
+		<h3 class="inup-head">** 検索 **</h3>
+		<%= form_with url: search_users_path, method: :get, local: true do |f| %>
+			<div class="field">
+				<%= f.text_field :name, placefolder:"名前入れてね" %>
+			</div>
+			<div class="field">
+				<%= f. submit :search, class:"in-btn" %>
+			</div>
+		<% end %>
+		<table>
+			<thead>
+				<tr>
+					<th></th>
+					<th>Name</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @users.each do |user| %>
+				<tr>
+					<td><%= attachment_image_tag user, :user_image, size:"40x40", fallback:"no_image.jpg" %></td>
+					<td><%= user.name %></td>
+					<td><%= link_to "that page", user_path(user.id) %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>

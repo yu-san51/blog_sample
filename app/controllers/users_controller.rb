@@ -18,8 +18,18 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def search
+		if params[:name].present?
+			@users = User.where("name LIKE ?", "%#{params[:name]}%")
+		else
+			@users = User.none
+		end
+	end
+
+
 	private
 	def user_params
 		params.require(:user).permit(:name, :user_image, :introduction)
 	end
+
 end

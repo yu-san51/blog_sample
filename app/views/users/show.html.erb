@@ -17,12 +17,12 @@
 
 
 		<div class="user-blog">
-		<%= @posts.each do |post| %>
+		<% @posts.each do |post| %>
 			<h3 class="blog-title">
 				<%= link_to "#{post.title}", post_image_path(post.id) %>
 			</h3>
 			<div class="img-box">
-				<%= attachment_image_tag post.post_image, :image, fallback:"no_image.jpg" %>
+				<%= attachment_image_tag post, :image, fallback:"no_image.jpg" %>
 			</div>
 			<div class="post-info">
 				<div class="date">
@@ -31,10 +31,10 @@
 				<div class="category">
 				</div>
 				<div class="nice">
-					<%= @post_image.favorites.count %> いいね
+					<%= post.favorites.count %> いいね
 				</div>
 				<div class="comment">
-					<%= link_to "#{@post.post_comments.count} コメント", post_image_path(post.id) %>
+					<%= link_to "#{post.post_comments.count} コメント", post_image_path(post.id) %>
 				</div>
 			</div>
 			<div class="caption">
@@ -45,4 +45,4 @@
 		<%= paginate @posts, class: "paginate" %>
 		</div>
 	</div>
-<div>
+</div>

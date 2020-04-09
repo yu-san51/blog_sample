@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   	resource :post_comments, only: [:create]
   	resource :favorites, only: [:create, :destroy]
   end
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:show, :edit, :update] do
+  	get :search, on: :collection
+  end
 
   root "home#index"
   get "home/about" => "home#about"
