@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_08_054435) do
+ActiveRecord::Schema.define(version: 2020_04_10_062643) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
@@ -27,6 +27,15 @@ ActiveRecord::Schema.define(version: 2020_04_08_054435) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "post_image_tag_relations", force: :cascade do |t|
+    t.integer "post_image_id"
+    t.integer "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_image_id"], name: "index_post_image_tag_relations_on_post_image_id"
+    t.index ["tag_id"], name: "index_post_image_tag_relations_on_tag_id"
+  end
+
   create_table "post_images", force: :cascade do |t|
     t.string "image_id"
     t.text "caption"
@@ -34,6 +43,12 @@ ActiveRecord::Schema.define(version: 2020_04_08_054435) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "title"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

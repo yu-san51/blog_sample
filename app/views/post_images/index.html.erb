@@ -42,6 +42,12 @@
 					<div class="comment">
 						<%= link_to "#{post.post_comments.count} コメント", post_image_path(post.id) %>
 					</div>
+					<div class="category">
+						<% post.tags each do |tag| %>
+						<span class="badge badge-primary"><%= tag.name %></span>
+						<% end %>
+					</div>
+
 				</div><!--postinfo-->
 			</div><!--post-date-->
 			<div class="caption">

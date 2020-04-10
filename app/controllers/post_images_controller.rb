@@ -1,4 +1,5 @@
 class PostImagesController < ApplicationController
+
 	def index
 		@posts = PostImage.page(params[:page]).reverse_order
 	end
@@ -44,6 +45,6 @@ class PostImagesController < ApplicationController
 
 	private
 	def post_params
-		params.require(:post_image).permit(:title, :image, :caption)
+		params.require(:post_image).permit(:title, :image, :caption, tag_ids: [])
 	end
 end
