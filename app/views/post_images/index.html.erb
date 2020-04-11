@@ -4,58 +4,61 @@
 
 <div class="wrapper">
 	<section class="image-index-content">
-		<h2 class="index-head">Blogs</h2>
-		<div class="blog-box">
-			<% @posts.each do |post| %>
-			<div class="post-date">
-				<h3 class="blog-title">
-					<%= link_to "#{post.title}", post_image_path(post.id) %>
-				</h3>
-				<div class="img-box">
-					<%= attachment_image_tag post, :image, size:"300x200", fallback: "no_image.jpg" %>
-				</div>
-				<div class="user-info">
-					<div class="userphoto">
-						<%= attachment_image_tag post, :image, fallback: "no_image.jpg", size:"40x40" %>
-					</div>
-					<div class="username">
-						<%= post.user.name %>
-					</div>
-				</div>
-				<div class="post-info">
-					<div class="date">
-						<%= post.created_at.strftime("%Y/%m/%d") %>
-					</div>
-					<div class="nice">
-						<% if post.favorited_by?(current_user) %>
-							<%= link_to post_image_favorites_path(post), method: :delete do %>
-								<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-								<%= post.favorites.count %> いいね
-							<% end %>
-						<% else %>
-							<%= link_to post_image_favorites_path(post), method: :post do %>
-								 <i class="fa fa-heart-o" aria-hidden="true"></i>
-								 <%= post.favorites.count %> いいね
-							<% end %>
-						<% end %>
-					</div><!--nice-->
-					<div class="comment">
-						<%= link_to "#{post.post_comments.count} コメント", post_image_path(post.id) %>
-					</div>
-					<div class="category">
-						<% post.tags each do |tag| %>
-						<span class="badge badge-primary"><%= tag.name %></span>
-						<% end %>
-					</div>
-
-				</div><!--postinfo-->
-			</div><!--post-date-->
-			<div class="caption">
-				<%= post.caption.truncate(50) %><br>
-				<%= link_to "続きはこちら", post_image_path(post.id) %>
-			</div>
-			<% end %>
-			<%= paginate @posts, class: "paginate" %>
+		<div>
+			<h2 class="index-head">Blogs</h2>
+			<table>
+				<tbody class="blog-box">
+					<% @posts.each do |post| %>
+						<tr>
+							<td class="blog-title"><%= link_to "#{post.title}", post_image_path(post.id) %>
+							</td>
+						</tr>
+						<tr class="post-date">
+							<td class="img-box"><%= attachment_image_tag post, :image, size:"300x200", fallback: "no_image.jpg" %>
+							</td>
+						</tr>
+						<tr class="user-info">
+							<td class="userphoto"><%= attachment_image_tag post.user, :user_image, fallback: "no_image.jpg", size:"40x40" %></td>
+							<td class="username"><%= post.user.name %>
+							</td>
+							<td></td>
+						</tr>
+						<tr class="post-info">
+							<td class="date"><%= post.created_at.strftime("%Y/%m/%d") %>
+							</td>
+							<td class="category"><% post.tags.each do |tag| %>
+									<span class="badge badge-primary"><%= tag.name %></span>
+								<% end %>
+							</td>
+						</tr>
+						<tr>
+							<td class="nice">
+								<% if post.favorited_by?(current_user) %>
+									<%= link_to post_image_favorites_path(post), method: :delete do %>
+										<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+										<%= post.favorites.count %> いいね
+									<% end %>
+								<% else %>
+									<%= link_to post_image_favorites_path(post), method: :post do %>
+										 <i class="fa fa-heart-o" aria-hidden="true"></i>
+									 	<%= post.favorites.count %> いいね
+									<% end %>
+								<% end %>
+							</td>
+							<td class="comment"><%= link_to "#{post.post_comments.count} コメント", post_image_path(post.id) %>
+							</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td class="image-index-caption">
+								<%= post.caption.truncate(50) %><br>
+								<%= link_to "続きはこちら", post_image_path(post.id) %>
+							</td>
+						</tr>
+					<% end %>
+					<%= paginate @posts, class: "paginate" %>
+				</tbody>
+			</table>
 		</div>
 	</section>
 </div><!--wrapper-->

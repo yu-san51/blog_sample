@@ -22,14 +22,14 @@
 				<%= link_to "#{post.title}", post_image_path(post.id) %>
 			</h3>
 			<div class="img-box">
-				<%= attachment_image_tag post, :image, fallback:"no_image.jpg" %>
+				<%= attachment_image_tag post, :image, fallback:"no_image.jpg", size:"300x200" %>
 			</div>
 			<div class="post-info">
 				<div class="date">
 					<%= post.created_at.strftime("%Y/%m/%d") %>
 				</div>
 				<div class="category">
-					<% post.tags each do |tag| %>
+					<td class="category"><% post.tags.each do |tag| %>
 						<span class="badge badge-primary"><%= tag.name %></span>
 					<% end %>
 				</div>

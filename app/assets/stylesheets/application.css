@@ -133,22 +133,30 @@ footer{
 	line-height: 150px;
 	background:linear-gradient(45deg,rgba(31,223,223,0.6),rgba(255,171,255,0.6)),fixed;
 }
+.image-index-content{
+	width: 80%;
+	display: flex;
+	justify-content: center;
+}
 .index-head{
 	text-align: center;
 	margin: 10px;
 	font-size: 30px;
 }
-.blog-box{
-	display: flex;
-}
 .blog-title{
 	font-size: 20px;
+	padding-top: 25px;
 }
-.user-info{
-	display: flex;
+.userphoto{
+	border-radius: 50%;
 }
-.post-info{
-	display: flex;
+.username{
+	font-weight: bold;
+	line-height: 100%;
+}
+.image-index-caption{
+	padding-bottom: 10px;
+	border-bottom: 1px solid gray;
 }
 
 /*post-image-show*/
@@ -211,7 +219,9 @@ footer{
 	color: #fff;
 	border-radius: 5px;
 }
-
+.image-show-comment{
+	margin:30px;
+}
 .postcomment{
 	width: 20%;
 }
@@ -219,11 +229,15 @@ footer{
 /*user-show*/
 .user-box{
 	width: 80%;
+	margin: 30px 0;
 	display: flex;
 	justify-content: space-between;
 }
 .user-profile{
 	width: 20%;
+}
+.user-img{
+	padding-top: 25px;
 }
 .user-blog{
 	width: 70%;
